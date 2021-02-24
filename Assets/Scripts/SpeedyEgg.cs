@@ -12,9 +12,9 @@ namespace EggRunner.Lara
         public Rigidbody rb;
 
         #region Speedy Variables
-        [SerializeField] protected float acceleration = 5f;
-        [SerializeField] private float maxSpeed = 150f;
-        [SerializeField] private float currentSpeed = 50f;
+        [SerializeField, Tooltip("Force added to egg")] protected float acceleration = 1f; 
+        [SerializeField, Tooltip("Maximum speed that egg can go")] private float maxSpeed = 150f;
+        [SerializeField, Tooltip("Current speed of egg")] private float currentSpeed = 50f;
         #endregion
 
         private void Start()
@@ -25,12 +25,13 @@ namespace EggRunner.Lara
 
         private void FixedUpdate()
         {
-            //currentSpeed = maxSpeed * acceleration * Time.deltaTime;
-            rb.AddForce(new Vector3(-30, -30, 0) * 1); //Yay sphere goes diagonally down
+            //AddForce to make egg travel diagonally 
+            rb.AddForce(new Vector3(-30, -30, 0) * acceleration); 
 
+            //If current speed is greater than max speed, then limit speed by making current speed = max speed
             if (currentSpeed < maxSpeed)
             {
-                currentSpeed += acceleration;
+                currentSpeed = maxSpeed;
             }
 
         }

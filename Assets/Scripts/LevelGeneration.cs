@@ -6,44 +6,38 @@ namespace EggRunner.Lara
 {
     public class LevelGeneration : MonoBehaviour
     {
-        //When player reaches a point down the hill, 
-        //the level will instantiate and the track behind 
-        //will disappear
-
         [SerializeField]
-        private List<GameObject> hillPrefabs = new List<GameObject>();
+        private List<GameObject> platformPrefabs = new List<GameObject>();
 
-        //Where the next hill will spawn
-        public Transform spawnNextPlatform; 
+        //Where the next platform will spawn
+        public Transform spawnPlatform; 
 
         public GameObject player; //Ref to player object
 
-        // Start is called before the first frame update
-        void Start()
+        //When player reaches a point down the hill, 
+        //the level will instantiate and the track behind 
+        //will disappear after 3.5 seconds
+
+        private void Awake()
         {
-            
+            #region Platform Positions for Spawn
+            Vector3 platformOnePos = new Vector3(-67, -28.1f);
+            Vector3 platformTwoPos = platformOnePos + new Vector3(-67, -28.1f);
+            #endregion
+
+            //Platform
+            Instantiate(spawnPlatform, platformTwoPos, Quaternion.Euler(0f, 0f, 26f));
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            
+
         }
 
-        // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
-        private void OnCollisionEnter(Collision collision)
+        public void SpawnLevel(Vector3 spawnPos)
         {
-            //If player hits collider, wait for a few seconds to 
-            //disable/destory the previous platform
-
-            if(collision.gameObject.name == "Sphere")
-            {
-                print("Collider hit");
-                Instantiate(hillPrefabs[0], spawnNextPlatform);
-            }
+            Instantiate(spawnPlatform, spawnPos, Quaternion.Euler(0f, 0f, 26f));
         }
-
-
 
     }
 }
