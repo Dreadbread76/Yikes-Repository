@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EggRunner.Lara
@@ -14,6 +12,7 @@ namespace EggRunner.Lara
             trackSpawner = GetComponent<TrackSpawner>();
         }
 
+        //When enter trigger, call move track function
         public void SpawnTriggerEnt()
         {
             trackSpawner.MoveTrack();

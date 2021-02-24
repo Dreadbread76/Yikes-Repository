@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace EggRunner.Lara
@@ -25,8 +23,14 @@ namespace EggRunner.Lara
         {
             GameObject tempTrack = platforms[0]; //Create temp variable to store the first platform
             platforms.Remove(tempTrack); //Remove it
-            tempTrack.transform.position = new Vector3(-15, -4, 0);
+            tempTrack.transform.position = new Vector3(-15, -4, 0); //Reposition the temp track 
             platforms.Add(tempTrack);
+            /*
+                        //BLOODY HELL JUST GONNA INSTANTIATE!
+                        GameObject tempTrack = platforms[0];
+                        platforms.Remove(tempTrack);
+                        tempTrack.transform.position = new Vector3();
+                        tempTrack = Instantiate(tempTrack, spawnPlatform);*/
         }
     }
 }

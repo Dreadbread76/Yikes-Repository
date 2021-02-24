@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EggRunner.Lara
@@ -28,14 +26,10 @@ namespace EggRunner.Lara
         private void FixedUpdate()
         {
             //AddForce to make egg travel diagonally 
-            rb.AddForce(new Vector3(-30, -30, 0) * acceleration); 
+            //rb.AddForce(new Vector3(-30, -30, 0) * acceleration);
 
-            //If current speed is greater than max speed, then limit speed by making current speed = max speed
-            if (currentSpeed < maxSpeed)
-            {
-                currentSpeed = maxSpeed;
-            }
-
+            //Please work! grrrrrrrrrrr
+            currentSpeed = currentSpeed + acceleration * Time.deltaTime;
         }
 
         // OnTriggerEnter is called when the Collider other enters the trigger
