@@ -91,7 +91,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test Track 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145965708820499256, guid: 0d196e1d1e57d804b89c063cc3368f16, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0d196e1d1e57d804b89c063cc3368f16, type: 3}
 --- !u!4 &4277267452149571286 stripped
 Transform:
@@ -153,7 +154,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test Track 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145965708820499256, guid: 0d196e1d1e57d804b89c063cc3368f16, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0d196e1d1e57d804b89c063cc3368f16, type: 3}
 --- !u!4 &2299795416395746560 stripped
 Transform:

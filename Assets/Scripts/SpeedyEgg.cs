@@ -17,6 +17,8 @@ namespace EggRunner.Lara
         [SerializeField, Tooltip("Current speed of egg")] private float currentSpeed = 50f;
         #endregion
 
+        public SpawnManager spawnManager;
+
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -35,5 +37,13 @@ namespace EggRunner.Lara
             }
 
         }
+
+        // OnTriggerEnter is called when the Collider other enters the trigger
+        private void OnTriggerEnter(Collider other)
+        {
+            spawnManager.SpawnTriggerEnt();
+        }
+
+
     }
 }
