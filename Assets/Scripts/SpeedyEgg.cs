@@ -29,7 +29,10 @@ namespace EggRunner.Lara
             //rb.AddForce(new Vector3(-30, -30, 0) * acceleration);
 
             //Please work! grrrrrrrrrrr
-            currentSpeed = currentSpeed + acceleration * Time.deltaTime;
+            currentSpeed = currentSpeed * acceleration * Time.fixedDeltaTime;
+
+            //rb.MovePosition(transform.position + totalMovement.normalized * currentSpeed * Time.deltaTime);
+            //rb.AddRelativeForce(transform.position + totalMovement.normalized * currentSpeed * Time.deltaTime);
         }
 
         // OnTriggerEnter is called when the Collider other enters the trigger
