@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb25b408012b73f4ab45017d444ba665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformPrefabs: {fileID: 7556247183950238593, guid: 20574571c9307864ea6dfc1100dab4a0, type: 3}
+  platformPrefab: {fileID: 383795177}
   player: {fileID: 215606226}
   currentPlatform: {fileID: 383795177}
 --- !u!114 &195219867
