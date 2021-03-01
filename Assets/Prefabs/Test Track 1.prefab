@@ -57,6 +57,8 @@ GameObject:
   - component: {fileID: 7556247183950238719}
   - component: {fileID: 7556247183950238718}
   - component: {fileID: 2025543074965908339}
+  - component: {fileID: 2001346830607558794}
+  - component: {fileID: 9014984934560767421}
   m_Layer: 0
   m_Name: Test Track 1
   m_TagString: Untagged
@@ -153,3 +155,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bbe5fec58290b419ffba51f4b0eaba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2001346830607558794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7556247183950238593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 0.9999999, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9014984934560767421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7556247183950238593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ed6496dc45d714facc66fb91f7aa2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounds: {fileID: 2001346830607558794}

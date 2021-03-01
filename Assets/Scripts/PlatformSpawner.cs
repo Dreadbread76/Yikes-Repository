@@ -8,6 +8,8 @@ namespace EggRunner.Lara
         public GameObject platformPrefabs;
         public SpeedyEgg player; //Ref to player object for setting platforms to its position
 
+        public GameObject currentPlatform;
+
         //When player reaches a point down the hill, 
         //the level will instantiate and the track behind 
         //will move to become the next one
@@ -26,7 +28,22 @@ namespace EggRunner.Lara
         //Kinda works but not really
         public void EndlessPlatforms()
         {
-            Instantiate(platformPrefabs, player.transform.position, Quaternion.Euler(0, 0, 20));
+            Vector3 position = player.transform.position;
+            Quaternion rotation = Quaternion.Euler(0, 0, 20);
+
+            if(currentPlatform != null)
+            {
+                // We have already spawned a platform
+
+                // Align new platform to previous
+                rotation = currentPlatform.transform.rotation;
+
+                // Move platform to front of other one
+                Platform platform = currentPlatform.GetComponent<Platform>();
+                position = currentPlatform.transform.position - (currentPlatform.transform.right * (platform.bounds.size.x * currentPlatform.transform.localScale.x));
+            }
+
+            currentPlatform = Instantiate(platformPrefabs, position, rotation);
         }
 
         /*STEPS
