@@ -12,7 +12,7 @@ namespace EggRunner.Lara
         #region Speedy Variables
         [SerializeField, Tooltip("Force added to egg")] protected float acceleration = 1f; 
         [SerializeField, Tooltip("Maximum speed that egg can go")] private float maxSpeed = 150f;
-        [SerializeField, Tooltip("Current speed of egg")] private float currentSpeed = 50f;
+        [SerializeField, Tooltip("Current speed of egg")] private float currentSpeed = 100f;
         #endregion
 
         public SpawnManager spawnManager;
@@ -28,11 +28,7 @@ namespace EggRunner.Lara
             //AddForce to make egg travel diagonally 
             //rb.AddForce(new Vector3(-30, -30, 0) * acceleration);
 
-            //Please work! grrrrrrrrrrr
             currentSpeed = currentSpeed * acceleration * Time.fixedDeltaTime;
-
-            //rb.MovePosition(transform.position + totalMovement.normalized * currentSpeed * Time.deltaTime);
-            //rb.AddRelativeForce(transform.position + totalMovement.normalized * currentSpeed * Time.deltaTime);
         }
 
         // OnTriggerEnter is called when the Collider other enters the trigger
