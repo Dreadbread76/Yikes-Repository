@@ -3,37 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TempPlayer : MonoBehaviour
+namespace EggRunner.Lara
 {
-    [SerializeField] private int health = 100;
-    [SerializeField] private int damage = 5;
-    public TMP_Text tempHealth;
-
-    [SerializeField] private int scoreCount;
-    public TMP_Text scoreText;
-
-    // Update is called once per frame
-    void Update()
+    public class TempPlayer : MonoBehaviour
     {
-        tempHealth.text = "Health: " + health.ToString();
-    }
+        [SerializeField] private int health = 100;
+        [SerializeField] private int damage = 25;
+        public TMP_Text tempHealth;
 
-    // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Boulder"))
+        // Update is called once per frame
+        void Update()
         {
-            Debug.Log("Player Hit");
-            //Injure player
-            TempDamage();
-            Destroy(collision.gameObject);
+            tempHealth.text = "Health: " + health.ToString();
+        }
+
+        // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Boulder"))
+            {
+                Debug.Log("Player Hit");
+                //Injure player
+                TempDamage();
+                Destroy(collision.gameObject);
+            }
+
+            if (collision.gameObject.CompareTag("Meat"))
+            {
+                CollectableManager.collectableMan.UpdateScore(5); //Update score
+                Destroy(collision.gameObject);
+            }
+        }
+
+        public void TempDamage()
+        {
+            health -= damage;
+        }
+
+        public void TempDeath()
+        {
+            if(health <= 0)
+            {
+                Debug.Log("Player Killed!");
+                Time.timeScale = 0; //Stop time
+            }
         }
     }
-
-    public void TempDamage()
-    {
-        health -= damage;
-    }
-
-
 }
