@@ -9,12 +9,20 @@ namespace EggRunner.Lara
     {
         [SerializeField] private int health = 100;
         [SerializeField] private int damage = 25;
-        public TMP_Text tempHealth;
+        public TMP_Text tempHealthText;
+
+        [SerializeField] private int distance;
+        public TMP_Text distanceText;
 
         // Update is called once per frame
         void Update()
         {
-            tempHealth.text = "Health: " + health.ToString();
+            tempHealthText.text = "Health: " + health.ToString(); //Display temp health
+
+            #region Measure Distance
+            distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
+            distance += (int)transform.position.x;
+            #endregion
         }
 
         // OnTriggerEnter is called when the Collider other enters the trigger
@@ -22,20 +30,17 @@ namespace EggRunner.Lara
         {
             if (other.gameObject.CompareTag("Boulder"))
             {
-                Debug.Log("Player Hit");
-                //Injure player
-                TempDamage();
+                //Debug.Log("Player Hit");
+                TempDamage(); //Injure player
                 Destroy(other.gameObject);
             }
 
             if (other.gameObject.CompareTag("Meat"))
             {
-                CollectableManager.collectableMan.UpdateScore(5); //Update score
+                CollectableManager.collectableMan.UpdateScore(1); //Update score
                 Destroy(other.gameObject);
             }
         }
-
-
 
         public void TempDamage()
         {
