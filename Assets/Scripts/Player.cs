@@ -1,90 +1,156 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
-    public int lane;
+    #region Variables 
     Rigidbody rigi;
-    Vector3 moveDirection;
+
+
+    [Header("Markers")]
+    public int lane;
+    public GameObject[] laneMarkers = new GameObject[3];
+    public float minDistanceToMarker;
+    
 
     [Header("Stats")]
     public int score = 0;
-    public float speed;
+    public float shiftSpeed;
     public int health;
     public int maxHealth = 3;
     public bool isGrounded;
-    public float jumpHeight = 5;
-    
+    public float jumpHeight = 100;
+    bool isDead;
 
-
-    // Start is called before the first frame update
+    public GameObject deathScreen;
+    #endregion
+    #region Start
     void Start()
     {
         rigi = GetComponent<Rigidbody>();
         lane = 1;
         health = maxHealth;
-
-    }
-
-   
-    void Update()
-    {
-        moveDirection = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
-        moveDirection *= speed;
-
-        if (isGrounded)
-        {
-            if (Input.GetKeyDown(KeyCode.A) && lane > 0)
-            {
-                lane--;
-                moveDirection.x  = -1;
-            }
-            if (Input.GetKeyDown(KeyCode.D) && lane < 2)
-            {
-                lane++;
-                moveDirection.x = 1;
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rigi.AddForce(0, jumpHeight, 0);
-            }
-        }
-
-
-
+        isDead = false;
+        deathScreen.gameObject.SetActive(false);
         
     }
+    #endregion
+    #region Update
+    void Update()
+    {
 
+        if (!isDead)
+        {
+            #region Movement
+            if (isGrounded)
+            {
+
+                // Change lane with the A or D button (A left, D right)
+                if (Input.GetKeyDown(KeyCode.A) && lane > 0)
+                {
+                    lane--;
+                    StartCoroutine(Move());
+                }
+                if (Input.GetKeyDown(KeyCode.D) && lane < 2)
+                {
+                    lane++;
+                    StartCoroutine(Move());
+                }
+                // Jump while your feet are grounded 
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    rigi.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+                }
+            }
+            #endregion
+            #region Death
+            // Die when your health hits zero
+            if (health <= 0 || Input.GetKeyDown(KeyCode.X))
+            {
+                Dead();
+            }
+            #endregion
+            
+        }
+
+    }
+    #endregion
+    #region Collisions
     public void OnCollisionEnter(Collision collision)
     {
-        if (rigi.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             health--;
         }
-        if (rigi.gameObject.CompareTag("Tim Tam"))
-        {
-            health++;
-        }
-        if (rigi.gameObject.CompareTag("Box"))
-        {
-            health = maxHealth;
-        }
-        if (rigi.gameObject.CompareTag("Meat"))
+        if (collision.gameObject.CompareTag("Tim Tam"))
         {
             score++;
         }
-        if(rigi.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Box"))
+        {
+            health = maxHealth;
+        }
+        if (collision.gameObject.CompareTag("Meat"))
+        {
+            health++;
+        }
+       
+
+    }
+    public void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+       
+
+    }
+    public void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
         }
     }
 
-    public void OnCollisionStay(Collision collision)
+    #endregion
+    #region Movement
+    public IEnumerator Move()
     {
-        if (rigi.gameObject.CompareTag("Ground"))
+       
+        float step = shiftSpeed * Time.deltaTime;
+
+        // Move towards the next lane marker
+        while (gameObject.transform.position != laneMarkers[lane].transform.position)
         {
-            isGrounded = true;
+            this.gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, laneMarkers[lane].transform.position, step);
+
+            yield return 0;
         }
+            
+
     }
+    #endregion
+    #region Death
+    public void Dead()
+    {
+        // Bring up the death screen when dead
+        isDead = true;
+        deathScreen.gameObject.SetActive(true);
+    }
+    #endregion
+    #region Restart
+    public void Restart()
+    {
+        // Get the current scene and reload
+        Scene currentScene = SceneManager.GetActiveScene();
+        {
+            SceneManager.LoadScene(currentScene.name);
+        }
+        
+    }
+    #endregion
+
 }
