@@ -17,23 +17,25 @@ namespace EggRunner.Lara
             tempHealth.text = "Health: " + health.ToString();
         }
 
-        // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
-        private void OnCollisionEnter(Collision collision)
+        // OnTriggerEnter is called when the Collider other enters the trigger
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.CompareTag("Boulder"))
+            if (other.gameObject.CompareTag("Boulder"))
             {
                 Debug.Log("Player Hit");
                 //Injure player
                 TempDamage();
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
             }
 
-            if (collision.gameObject.CompareTag("Meat"))
+            if (other.gameObject.CompareTag("Meat"))
             {
                 CollectableManager.collectableMan.UpdateScore(5); //Update score
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
             }
         }
+
+
 
         public void TempDamage()
         {
