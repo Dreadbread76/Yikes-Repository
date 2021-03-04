@@ -6,6 +6,7 @@ namespace EggRunner.Lara
     {
         PlatformSpawner trackSpawner;
 
+
         // Start is called before the first frame update
         void Start()
         {

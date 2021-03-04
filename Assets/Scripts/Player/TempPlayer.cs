@@ -21,14 +21,14 @@ namespace EggRunner.Lara
 
             #region Measure Distance
             distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
-            distance += (int)transform.position.x;
+            distance = (int)transform.position.x;
             #endregion
         }
 
         // OnTriggerEnter is called when the Collider other enters the trigger
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Boulder"))
+            if (other.gameObject.CompareTag("Obstacle"))
             {
                 //Debug.Log("Player Hit");
                 TempDamage(); //Injure player

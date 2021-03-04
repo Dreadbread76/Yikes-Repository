@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Boulder
   - Meat
+  - Obstacle
   layers:
   - Default
   - TransparentFX
