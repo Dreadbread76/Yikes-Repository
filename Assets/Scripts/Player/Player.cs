@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class Player : MonoBehaviour
 {
     #region Variables 
@@ -10,20 +11,26 @@ public class Player : MonoBehaviour
 
     [Header("Markers")]
     public int lane;
+    public GameObject laneParent;
     public GameObject[] laneMarkers = new GameObject[3];
     public float minDistanceToMarker;
     
 
     [Header("Stats")]
     public int score = 0;
-    public float shiftSpeed;
+    public float shiftSpeed = 1;
     public int health;
     public int maxHealth = 3;
     public bool isGrounded;
-    public float jumpHeight = 100;
+    public float jumpHeight = 12;
     bool isDead;
 
+    [Header("Player UI")]
+    public TMP_Text scoreText;
+    public TMP_Text healthText;
     public GameObject deathScreen;
+
+
     #endregion
     #region Start
     void Start()
@@ -33,7 +40,12 @@ public class Player : MonoBehaviour
         health = maxHealth;
         isDead = false;
         deathScreen.gameObject.SetActive(false);
-        
+        score = 0;
+        healthText.text = "Health: " + health;
+        scoreText.text = "Score: " + score;
+
+
+
     }
     #endregion
     #region Update
@@ -73,27 +85,45 @@ public class Player : MonoBehaviour
             #endregion
             
         }
+        laneParent.transform.position = new Vector3(transform.position.x, transform.position.y);
 
+        #region Test Kill
+        /*Testing Purposes
+         if(Input.GetKey(KeyCode.X))
+         {
+             Dead();
+
+         }
+           */
+        #endregion
     }
     #endregion
     #region Collisions
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (other.gameObject.CompareTag("Obstacle"))
         {
             health--;
+            healthText.text = "Health: " + health;
+            Destroy(other.gameObject);
         }
-        if (collision.gameObject.CompareTag("Tim Tam"))
-        {
-            score++;
-        }
-        if (collision.gameObject.CompareTag("Box"))
-        {
-            health = maxHealth;
-        }
-        if (collision.gameObject.CompareTag("Meat"))
+        if (other.gameObject.CompareTag("Tim Tam"))
         {
             health++;
+            healthText.text = "Health: " + health;
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Box"))
+        {
+            health = maxHealth;
+            healthText.text = "Health: " + health;
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Meat"))
+        {
+            score++;
+            scoreText.text = "Score: " + score;
+            Destroy(other.gameObject);
         }
        
 
@@ -137,8 +167,10 @@ public class Player : MonoBehaviour
     public void Dead()
     {
         // Bring up the death screen when dead
+        Debug.Log("RIP Caveman");
         isDead = true;
         deathScreen.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
     #endregion
     #region Restart
@@ -147,6 +179,7 @@ public class Player : MonoBehaviour
         // Get the current scene and reload
         Scene currentScene = SceneManager.GetActiveScene();
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(currentScene.name);
         }
         
