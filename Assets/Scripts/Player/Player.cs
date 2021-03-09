@@ -29,7 +29,8 @@ public class Player : MonoBehaviour
 
     [Header("Player UI")]
     public Text scoreText;
-    public Text healthText;
+  //  public Text healthText;
+    public GameObject[] healthBar;
     public GameObject deathScreen;
 
 
@@ -37,13 +38,16 @@ public class Player : MonoBehaviour
     #region Start
     void Start()
     {
+        healthBar = new GameObject[maxHealth];
         rigi = GetComponent<Rigidbody>();
         lane = 1;
         health = maxHealth;
         isDead = false;
         deathScreen.gameObject.SetActive(false);
         score = 0;
-        healthText.text = "Health: " + health;
+      //  healthText.text = "Health: " + health;
+
+
         scoreText.text = "Score: " + score;
 
 
@@ -106,19 +110,19 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             health--;
-            healthText.text = "Health: " + health;
+           // healthText.text = "Health: " + health;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Tim Tam"))
         {
             health++;
-            healthText.text = "Health: " + health;
+          //  healthText.text = "Health: " + health;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Box"))
         {
             health = maxHealth;
-            healthText.text = "Health: " + health;
+           // healthText.text = "Health: " + health;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Meat"))
@@ -185,6 +189,17 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(currentScene.name);
         }
         
+    }
+    #endregion
+
+    #region Health
+    public void HealthUp()
+    {
+        if ()
+    }
+    public void HealthDown()
+    {
+
     }
     #endregion
 
