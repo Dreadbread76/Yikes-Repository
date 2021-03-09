@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
+
 public class Player : MonoBehaviour
 {
     #region Variables 
@@ -26,8 +28,8 @@ public class Player : MonoBehaviour
     bool isDead;
 
     [Header("Player UI")]
-    public TMP_Text scoreText;
-    public TMP_Text healthText;
+    public Text scoreText;
+    public Text healthText;
     public GameObject deathScreen;
 
 
