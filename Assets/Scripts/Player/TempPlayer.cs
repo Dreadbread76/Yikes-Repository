@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace EggRunner.Lara
 {
@@ -12,7 +13,7 @@ namespace EggRunner.Lara
        // public TMP_Text tempHealthText;
 
         [SerializeField] private int distance;
-        public TMP_Text distanceText;
+        public Text distanceText;
 
         // Update is called once per frame
         void Update()
