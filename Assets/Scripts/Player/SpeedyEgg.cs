@@ -38,11 +38,12 @@ namespace EggRunner.Lara
                 currentSpeed *= speedMultiplier;
             }
 
-            // Jump button
+          /*  // Jump button
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
             }
+            */
         }
 
         // OnTriggerEnter is called when the Collider other enters the trigger

@@ -7,6 +7,9 @@ TagManager:
   - Boulder
   - Meat
   - Obstacle
+  - Ground
+  - Box
+  - Tim Tam
   layers:
   - Default
   - TransparentFX
