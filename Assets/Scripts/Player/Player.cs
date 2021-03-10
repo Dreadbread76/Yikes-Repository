@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
   //  public Text healthText;
     public GameObject[] healthBar;
     public GameObject deathScreen;
+    [SerializeField] private int distance;
+    public Text distanceText;
 
 
     #endregion
@@ -57,6 +59,10 @@ public class Player : MonoBehaviour
     #region Update
     void Update()
     {
+        #region Measure Distance
+        distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
+        distance = (int)-transform.position.x;
+        #endregion
 
         if (!isDead)
         {
@@ -195,7 +201,7 @@ public class Player : MonoBehaviour
     #region Health
     public void HealthUp()
     {
-        if ()
+        //if ()
     }
     public void HealthDown()
     {

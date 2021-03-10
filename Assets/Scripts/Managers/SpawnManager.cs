@@ -18,10 +18,5 @@ namespace EggRunner.Lara
         {
            trackSpawner.EndlessPlatforms();
         }
-
-        public void SpawnObstacles()
-        {
-
-        }
     }
 }

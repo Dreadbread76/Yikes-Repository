@@ -7,8 +7,6 @@ namespace EggRunner.Lara
 {
     public class CollectableManager : MonoBehaviour
     {
-        [SerializeField] private int scoreCount;
-        public TMP_Text scoreText;
         public GameObject meatGO;
 
         #region Singleton
@@ -28,10 +26,6 @@ namespace EggRunner.Lara
         }
         #endregion
 
-        public void UpdateScore(int score)
-        {
-            scoreCount += score;
-            scoreText.text = "Score: " + scoreCount;
-        }
+        
     }
 }

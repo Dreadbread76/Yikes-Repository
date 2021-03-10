@@ -12,18 +12,14 @@ namespace EggRunner.Lara
        // [SerializeField] private int damage = 25;
        // public TMP_Text tempHealthText;
 
-        [SerializeField] private int distance;
-        public Text distanceText;
+        
 
         // Update is called once per frame
         void Update()
         {
        //     tempHealthText.text = "Health: " + health.ToString(); //Display temp health
 
-            #region Measure Distance
-            distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
-            distance = (int)-transform.position.x;
-            #endregion
+            
         }
 
 
