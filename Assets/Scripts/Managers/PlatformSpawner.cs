@@ -12,7 +12,6 @@ namespace EggRunner.Lara
         public Player player; //Ref to player object for setting platforms to its position
         #endregion
 
-
         //IT WORKS!
         public void EndlessPlatforms()
         {
@@ -33,8 +32,6 @@ namespace EggRunner.Lara
 
             currentPlatform = Instantiate(platformPrefab, position, rotation);
         }
-
-        
     }
 }
 

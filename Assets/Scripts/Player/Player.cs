@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     #region Variables 
     Rigidbody rigi;
 
-
     [Header("Markers")]
     public int lane;
     public GameObject laneParent;
@@ -52,7 +51,8 @@ public class Player : MonoBehaviour
 
         scoreText.text = "Score: " + score;
 
-
+        
+        rigi.AddForce(new Vector3(-30, -30, 0) * 1, ForceMode.Impulse); //Yay sphere goes diagonally down
 
     }
     #endregion
