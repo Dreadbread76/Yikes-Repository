@@ -40,10 +40,10 @@ public class Player : MonoBehaviour
     #region Start
     void Start()
     {
-        healthBar = new GameObject[maxHealth];
+        
         rigi = GetComponent<Rigidbody>();
         lane = 1;
-        health = maxHealth;
+        health = maxHealth - 1;
         isDead = false;
         deathScreen.gameObject.SetActive(false);
         score = 0;
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
             #endregion
             #region Death
             // Die when your health hits zero
-            if (health <= 0 || Input.GetKeyDown(KeyCode.X))
+            if (health < 0 || Input.GetKeyDown(KeyCode.X))
             {
                 Dead();
             }
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         }
         // lane markers and player 
         laneParent.transform.position = new Vector3(transform.position.x, transform.position.y);
-        dood.transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+        dood.transform.position = new Vector3(transform.position.x, transform.position.y + 4.5f, transform.position.z);
         #region Test Kill
         /*Testing Purposes
          if(Input.GetKey(KeyCode.X))
@@ -117,13 +117,13 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            health--;
-           // healthText.text = "Health: " + health;
+            HealthDown();
+            // healthText.text = "Health: " + health;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Tim Tam"))
         {
-            health++;
+            HealthUp();
           //  healthText.text = "Health: " + health;
             Destroy(other.gameObject);
         }
@@ -203,11 +203,16 @@ public class Player : MonoBehaviour
     #region Health
     public void HealthUp()
     {
-        //if ()
+        health++;
+        GameObject healthMeat = healthBar[health];
+        healthMeat.SetActive(true);
     }
     public void HealthDown()
     {
+        GameObject healthMeat = healthBar[health];
+        healthMeat.SetActive(false);
 
+        health--;
     }
     #endregion
 
