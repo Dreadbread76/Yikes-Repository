@@ -5,6 +5,7 @@ namespace EggRunner.Lara
     public class SpawnManager : MonoBehaviour
     {
         PlatformSpawner trackSpawner;
+        
 
         // Start is called before the first frame update
         void Start()
@@ -16,6 +17,11 @@ namespace EggRunner.Lara
         public void SpawnTriggerEnt()
         {
            trackSpawner.EndlessPlatforms();
+        }
+
+        private void Update()
+        {
+            
         }
     }
 }

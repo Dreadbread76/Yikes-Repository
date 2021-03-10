@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     [Header("Stats")]
     public int score = 0;
-    public float shiftSpeed = 1;
+    public float shiftSpeed = 20;
     public int health;
     public int maxHealth = 3;
     public bool isGrounded;
@@ -36,14 +36,16 @@ public class Player : MonoBehaviour
     [Header("Music")]
     public AudioSource deathSound; //set
     public AudioSource jumpSound; //set
-    public AudioSource backgroundMusic; //set
-    public AudioSource collideRock; //
-    public AudioSource collectableSound; //
-    public AudioSource volcanoBoom; //
+    public AudioSource dinosaur; //wait
+    public AudioSource pain; //set
+    public AudioSource collectableSound; //set
+    public AudioSource volcanoBoom; //wait
+    public AudioSource timTam;
     #endregion
     #region Start
     void Start()
     {
+        
         
         rigi = GetComponent<Rigidbody>();
         lane = 1;
@@ -55,8 +57,8 @@ public class Player : MonoBehaviour
 
 
         scoreText.text = "Score: " + score;
-
-        
+        StartCoroutine(PlayOnRepeat(dinosaur, 15f));
+        StartCoroutine(PlayOnRepeat(volcanoBoom, 20f));
         rigi.AddForce(new Vector3(-30, -30, 0) * 1, ForceMode.Impulse); //Yay sphere goes diagonally down
 
     }
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour
     #region Update
     void Update()
     {
+        
         #region Measure Distance
         distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
         distance = (int)-transform.position.x;
@@ -123,13 +126,16 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             HealthDown();
+           
+
             // healthText.text = "Health: " + health;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Tim Tam"))
         {
-            HealthUp();
-          //  healthText.text = "Health: " + health;
+            timTam.Play();
+            score++;
+            scoreText.text = "Score: " + score;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Box"))
@@ -140,8 +146,9 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Meat"))
         {
-            score++;
-            scoreText.text = "Score: " + score;
+            collectableSound.Play();
+            HealthUp();
+            //  healthText.text = "Health: " + health;
             Destroy(other.gameObject);
         }
        
@@ -186,6 +193,7 @@ public class Player : MonoBehaviour
     public void Dead()
     {
         deathSound.Play();
+        pain.Stop();
         // Bring up the death screen when dead
         Debug.Log("RIP Caveman");
         isDead = true;
@@ -210,9 +218,14 @@ public class Player : MonoBehaviour
     #region Health
     public void HealthUp()
     {
-        health++;
-        GameObject healthMeat = healthBar[health];
-        healthMeat.SetActive(true);
+        if(health < 2)
+        {
+            health++;
+
+            GameObject healthMeat = healthBar[health];
+            healthMeat.SetActive(true);
+        }
+       
     }
     public void HealthDown()
     {
@@ -220,7 +233,20 @@ public class Player : MonoBehaviour
         healthMeat.SetActive(false);
 
         health--;
+        if (!isDead)
+        {
+            pain.Play();
+        }
     }
     #endregion
+    public IEnumerator PlayOnRepeat(AudioSource audio, float soundDelay)
+    {
+        Debug.Log("Barney");
+        yield return new WaitForSeconds(soundDelay);
 
+        audio.Play();
+        StartCoroutine(PlayOnRepeat(audio,soundDelay));
+
+       
+    }
 }
