@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -35,7 +33,13 @@ public class Player : MonoBehaviour
     [SerializeField] private int distance;
     public Text distanceText;
 
-
+    [Header("Music")]
+    public AudioSource deathSound; //set
+    public AudioSource jumpSound; //set
+    public AudioSource backgroundMusic; //set
+    public AudioSource collideRock; //
+    public AudioSource collectableSound; //
+    public AudioSource volcanoBoom; //
     #endregion
     #region Start
     void Start()
@@ -86,6 +90,7 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     rigi.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+                    jumpSound.Play();
                 }
             }
             #endregion
@@ -180,11 +185,13 @@ public class Player : MonoBehaviour
     #region Death
     public void Dead()
     {
+        deathSound.Play();
         // Bring up the death screen when dead
         Debug.Log("RIP Caveman");
         isDead = true;
         deathScreen.gameObject.SetActive(true);
         Time.timeScale = 0;
+
     }
     #endregion
     #region Restart

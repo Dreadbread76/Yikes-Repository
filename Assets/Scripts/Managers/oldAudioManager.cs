@@ -3,27 +3,12 @@ using UnityEngine.Audio;
 
 namespace EggRunner.Lara
 {
-    public class AudioManager : MonoBehaviour
+    public class oldAudioManager : MonoBehaviour
     {
         public AudioMixer audioMaster;
         private AudioSource audioSource;
         public AudioClip bgMusic;
         public AudioClip volcanoBoom;
-
-        public static AudioManager soundManager;
-
-        private void Awake()
-        {
-            if (soundManager != null)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                soundManager = this;
-                DontDestroyOnLoad(gameObject);
-            }
-        }
 
         // Start is called before the first frame update
         void Start()
