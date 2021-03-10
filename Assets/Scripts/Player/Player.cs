@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     #region Variables 
     Rigidbody rigi;
+    public GameObject dood;
 
     [Header("Markers")]
     public int lane;
@@ -97,8 +98,9 @@ public class Player : MonoBehaviour
             #endregion
             
         }
+        // lane markers and player 
         laneParent.transform.position = new Vector3(transform.position.x, transform.position.y);
-
+        dood.transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
         #region Test Kill
         /*Testing Purposes
          if(Input.GetKey(KeyCode.X))
