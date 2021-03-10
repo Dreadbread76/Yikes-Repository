@@ -23,14 +23,25 @@ public class Player : MonoBehaviour
     public float jumpHeight = 100;
     bool isDead;
 
+<<<<<<< Updated upstream:Assets/Scripts/Player.cs
+=======
+    [Header("Player UI")]
+    public Text scoreText;
+  //  public Text healthText;
+    public List<GameObject> healthBar;
+>>>>>>> Stashed changes:Assets/Scripts/Player/Player.cs
     public GameObject deathScreen;
     #endregion
     #region Start
     void Start()
     {
+<<<<<<< Updated upstream:Assets/Scripts/Player.cs
+=======
+        
+>>>>>>> Stashed changes:Assets/Scripts/Player/Player.cs
         rigi = GetComponent<Rigidbody>();
         lane = 1;
-        health = maxHealth;
+        health = maxHealth - 1;
         isDead = false;
         deathScreen.gameObject.SetActive(false);
         
@@ -81,11 +92,23 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+<<<<<<< Updated upstream:Assets/Scripts/Player.cs
             health--;
+=======
+            HealthDown();
+           // healthText.text = "Health: " + health;
+            Destroy(other.gameObject);
+>>>>>>> Stashed changes:Assets/Scripts/Player/Player.cs
         }
         if (collision.gameObject.CompareTag("Tim Tam"))
         {
+<<<<<<< Updated upstream:Assets/Scripts/Player.cs
             score++;
+=======
+            HealthUp();
+          //  healthText.text = "Health: " + health;
+            Destroy(other.gameObject);
+>>>>>>> Stashed changes:Assets/Scripts/Player/Player.cs
         }
         if (collision.gameObject.CompareTag("Box"))
         {
@@ -152,5 +175,23 @@ public class Player : MonoBehaviour
         
     }
     #endregion
+<<<<<<< Updated upstream:Assets/Scripts/Player.cs
+=======
+    #region Health
+    public void HealthUp()
+    {
+        health++;
+        GameObject healthMeat = healthBar[health];
+        healthMeat.SetActive(true);
+    }
+    public void HealthDown()
+    {
+        GameObject healthMeat = healthBar[health];
+        healthMeat.SetActive(false);
+
+        health--;
+    }
+    #endregion
+>>>>>>> Stashed changes:Assets/Scripts/Player/Player.cs
 
 }
