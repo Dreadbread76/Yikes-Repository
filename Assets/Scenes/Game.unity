@@ -582,17 +582,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4d5f49c77eea54e8b3777b19528c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledSpawnables: []
   itemsToPool:
-  - objectToPool: {fileID: 729784585831127541, guid: 9cc83d57ff8dc7b4bbee881655f877a7, type: 3}
-    amountToPool: 5
-    shouldExpand: 1
   - objectToPool: {fileID: 3102064394532148737, guid: 85de8fb61c7fefe41917562d8f1d462e, type: 3}
     amountToPool: 10
     shouldExpand: 1
-  - objectToPool: {fileID: 2768318392081400792, guid: 5d95352a5340d3a44af946572ad6faa7, type: 3}
-    amountToPool: 50
+  - objectToPool: {fileID: 729784585831127541, guid: 9cc83d57ff8dc7b4bbee881655f877a7, type: 3}
+    amountToPool: 2
     shouldExpand: 1
+  - objectToPool: {fileID: 2768318392081400792, guid: 5d95352a5340d3a44af946572ad6faa7, type: 3}
+    amountToPool: 5
+    shouldExpand: 1
+  pooledSpawnables: []
 --- !u!1 &215606220
 GameObject:
   m_ObjectHideFlags: 0

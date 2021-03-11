@@ -6,7 +6,7 @@ namespace EggRunner.Lara
 {
     public class PlatformSpawner : MonoBehaviour
     {
-        #region Platform
+        #region Platform Variables
         public GameObject platformPrefab;
         public GameObject currentPlatform;
         public Player player; //Ref to player object for setting platforms to its position
@@ -14,14 +14,12 @@ namespace EggRunner.Lara
         public List<GameObject> spawnables = new List<GameObject>();
         #endregion
 
-        //public GameObject timTamGO;
-
         //IT WORKS!
-        public void EndlessPlatforms()
+        public void SpawnMaster()
         {
+            #region Endless Platforms
             Vector3 position = player.transform.position;
             Quaternion rotation = Quaternion.Euler(0, 0, 20);
-
 
             if(currentPlatform != null)
             {
@@ -36,27 +34,27 @@ namespace EggRunner.Lara
             }
             lane = Random.Range(0, 3);
             currentPlatform = Instantiate(platformPrefab, position, rotation);
-            
-            //TimTam tam = timTamGO.GetComponent<TimTam>();
+            #endregion
+
+            #region Spawn Obstacles
             Quaternion newRot = Quaternion.Euler(90, 90, 0); //Rotation works
             Vector3 newPos = position - new Vector3(0, -3, player.laneMarkers[lane].transform.position.z);
             Debug.Log(lane);
             //Instantiate(SpawnObject(Random.Range(0,100)), newPos, newRot);
 
-            //TEST
             #region Object Pool Test
             //This will request a GO to become active and set pos and rot of that GO
             //Only aquires a GO that is pre-instantiated and only gets set active or inactive when needed
-            GameObject spawnable = SpawnablesPoolTest.Instance.GetPooledObject("Tim Tam"); //Testing purposes using Tim Tams first
-            if(spawnable != null)
+            GameObject timTam = SpawnablesPool.Instance.GetPooledObject("Tim Tam"); //Testing purposes using Tim Tams first
+            if(timTam != null)
             {
-                spawnable.transform.position = newPos;
-                spawnable.transform.rotation = newRot;
-                spawnable.SetActive(true);
+                timTam.transform.position = newPos;
+                timTam.transform.rotation = newRot;
+                timTam.SetActive(true);
             }
             
 
-            GameObject boulder = SpawnablesPoolTest.Instance.GetPooledObject("Obstacle"); //Testing purposes using Tim Tams first
+            GameObject boulder = SpawnablesPool.Instance.GetPooledObject("Obstacle"); 
             if (boulder != null)
             {
                 boulder.transform.position = newPos;
@@ -65,13 +63,14 @@ namespace EggRunner.Lara
             }
 
 
-            GameObject meat = SpawnablesPoolTest.Instance.GetPooledObject("Meat"); //Testing purposes using Tim Tams first
+            GameObject meat = SpawnablesPool.Instance.GetPooledObject("Meat"); 
             if (meat != null)
             {
                 meat.transform.position = newPos;
                 meat.transform.rotation = newRot;
                 meat.SetActive(true);
             }
+            #endregion
 
             #endregion
         }

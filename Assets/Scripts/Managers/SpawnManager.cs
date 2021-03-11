@@ -16,7 +16,7 @@ namespace EggRunner.Lara
         //When enter trigger, call move track function
         public void SpawnTriggerEnt()
         {
-           trackSpawner.EndlessPlatforms();
+           trackSpawner.SpawnMaster();
         }
 
         private void Update()
