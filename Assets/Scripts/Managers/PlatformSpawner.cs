@@ -41,11 +41,11 @@ namespace EggRunner.Lara
             Quaternion newRot = Quaternion.Euler(90, 90, 0); //Rotation works
             Vector3 newPos = position - new Vector3(0, -3, player.laneMarkers[lane].transform.position.z);
             Debug.Log(lane);
-            Instantiate(SpawnObject(Random.Range(0,100)), newPos, newRot);
+            //Instantiate(SpawnObject(Random.Range(0,100)), newPos, newRot);
         }
         public void SpawnObject(int num)
         {
-            switch(num)
+            /*switch(num)
             {
                 case (0 - 60):
                 default:
@@ -53,7 +53,7 @@ namespace EggRunner.Lara
                     break;
                         cas
                     
-            }
+            }*/
 
                 
         }
