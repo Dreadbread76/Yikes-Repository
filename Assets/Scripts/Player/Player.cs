@@ -45,8 +45,6 @@ public class Player : MonoBehaviour
     #region Start
     void Start()
     {
-        
-        
         rigi = GetComponent<Rigidbody>();
         lane = 1;
         health = maxHealth - 1;
@@ -63,6 +61,7 @@ public class Player : MonoBehaviour
 
     }
     #endregion
+
     #region Update
     void Update()
     {
@@ -126,17 +125,18 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             HealthDown();
-           
 
             // healthText.text = "Health: " + health;
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            //Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Tim Tam"))
         {
             timTam.Play();
             score++;
             scoreText.text = "Score: " + score;
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            //Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Box"))
         {
@@ -149,7 +149,8 @@ public class Player : MonoBehaviour
             collectableSound.Play();
             HealthUp();
             //  healthText.text = "Health: " + health;
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
        
 

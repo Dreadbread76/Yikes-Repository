@@ -42,7 +42,40 @@ namespace EggRunner.Lara
             Vector3 newPos = position - new Vector3(0, -3, player.laneMarkers[lane].transform.position.z);
             Debug.Log(lane);
             //Instantiate(SpawnObject(Random.Range(0,100)), newPos, newRot);
+
+            //TEST
+            #region Object Pool Test
+            //This will request a GO to become active and set pos and rot of that GO
+            //Only aquires a GO that is pre-instantiated and only gets set active or inactive when needed
+            GameObject spawnable = SpawnablesPoolTest.Instance.GetPooledObject("Tim Tam"); //Testing purposes using Tim Tams first
+            if(spawnable != null)
+            {
+                spawnable.transform.position = newPos;
+                spawnable.transform.rotation = newRot;
+                spawnable.SetActive(true);
+            }
+            
+
+            GameObject boulder = SpawnablesPoolTest.Instance.GetPooledObject("Obstacle"); //Testing purposes using Tim Tams first
+            if (boulder != null)
+            {
+                boulder.transform.position = newPos;
+                boulder.transform.rotation = newRot;
+                boulder.SetActive(true);
+            }
+
+
+            GameObject meat = SpawnablesPoolTest.Instance.GetPooledObject("Meat"); //Testing purposes using Tim Tams first
+            if (meat != null)
+            {
+                meat.transform.position = newPos;
+                meat.transform.rotation = newRot;
+                meat.SetActive(true);
+            }
+
+            #endregion
         }
+
         public void SpawnObject(int num)
         {
             /*switch(num)
