@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     public AudioSource timTam;
     #endregion
     #region Start
-    void Start()
+    void OnEnable()
     {
         rigi = GetComponent<Rigidbody>();
         lane = 1;

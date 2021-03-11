@@ -588,10 +588,10 @@ MonoBehaviour:
     amountToPool: 5
     shouldExpand: 1
   - objectToPool: {fileID: 3102064394532148737, guid: 85de8fb61c7fefe41917562d8f1d462e, type: 3}
-    amountToPool: 5
+    amountToPool: 10
     shouldExpand: 1
   - objectToPool: {fileID: 2768318392081400792, guid: 5d95352a5340d3a44af946572ad6faa7, type: 3}
-    amountToPool: 5
+    amountToPool: 50
     shouldExpand: 1
 --- !u!1 &215606220
 GameObject:
