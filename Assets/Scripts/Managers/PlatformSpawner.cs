@@ -6,7 +6,7 @@ namespace EggRunner.Lara
 {
     public class PlatformSpawner : MonoBehaviour
     {
-        #region Platform Variables
+        #region Spawn Variables
         public GameObject platformPrefab;
         public GameObject currentPlatform;
         public Player player; //Ref to player object for setting platforms to its position
@@ -40,7 +40,9 @@ namespace EggRunner.Lara
             Quaternion newRot = Quaternion.Euler(90, 90, 0); //Rotation works
             Vector3 newPos = position - new Vector3(0, -3, player.laneMarkers[lane].transform.position.z);
             Debug.Log(lane);
-            //Instantiate(SpawnObject(Random.Range(0,100)), newPos, newRot);
+            Vector3 timTamOffset = new Vector3(15f, 5f, 0); //Push forward and separates the spawnables
+            Vector3 boulderOffset = new Vector3(25f, 5f, 0);
+            Vector3 meatOffset = new Vector3(35f, 5f, 0);
 
             #region Object Pool Test
             //This will request a GO to become active and set pos and rot of that GO
@@ -48,7 +50,7 @@ namespace EggRunner.Lara
             GameObject timTam = SpawnablesPool.Instance.GetPooledObject("Tim Tam"); //Testing purposes using Tim Tams first
             if(timTam != null)
             {
-                timTam.transform.position = newPos;
+                timTam.transform.position = newPos + timTamOffset;
                 timTam.transform.rotation = newRot;
                 timTam.SetActive(true);
             }
