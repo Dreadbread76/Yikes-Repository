@@ -30,7 +30,7 @@ namespace EggRunner.Lara
         void Start()
         {
             pooledSpawnables = new List<GameObject>();
-            //Iterate through all instances of SpawnablePoolItem and add the appropriate objects to the spawn pool.
+            //Go through all instances of SpawnablePoolItem and add the appropriate objects to the spawn pool.
             foreach (SpawnablePoolItem item in itemsToPool)
             {
                 for (int i = 0; i < item.amountToPool; i++)
@@ -56,7 +56,6 @@ namespace EggRunner.Lara
                     return pooledSpawnables[i];
                 }
             }
-            //return null;
 
             //This foreach statement allows for infinte anmounts of objects can be spawned
             //by expanding the objects to pool by adding to the list
