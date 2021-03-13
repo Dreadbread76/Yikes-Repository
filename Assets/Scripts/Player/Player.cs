@@ -18,18 +18,23 @@ public class Player : MonoBehaviour
 
     [Header("Stats")]
     public int score = 0;
-    public float shiftSpeed = 20;
+    public int highScore = 0;
+    public float shiftSpeed = 1;
     public int health;
     public int maxHealth = 3;
     public bool isGrounded;
     public float jumpHeight = 12;
-    bool isDead;
+    public bool isDead = false;
 
     [Header("Player UI")]
     public Text scoreText;
   //  public Text healthText;
     public GameObject[] healthBar;
     public GameObject deathScreen;
+    public Text highScoreText;
+    public GameObject enterNameScreen;
+    public InputField nameInput;
+    private string PlayerName = "";
     [SerializeField] private int distance;
     public Text distanceText;
 
@@ -41,6 +46,13 @@ public class Player : MonoBehaviour
     public AudioSource collectableSound; //set
     public AudioSource volcanoBoom; //wait
     public AudioSource timTam;
+
+    private void Awake()
+    {
+        highScore = PlayerPrefs.GetInt("Highscore", 0);
+        Debug.Log(highScore);
+    }
+
     #endregion
     #region Start
     void OnEnable()
@@ -50,8 +62,9 @@ public class Player : MonoBehaviour
         health = maxHealth - 1;
         isDead = false;
         deathScreen.gameObject.SetActive(false);
+        enterNameScreen.SetActive(false);
         score = 0;
-      //  healthText.text = "Health: " + health;
+        scoreText.text = "Score: " + score;
 
 
         scoreText.text = "Score: " + score;
@@ -105,17 +118,20 @@ public class Player : MonoBehaviour
             #endregion
             
         }
-        // lane markers and player 
         laneParent.transform.position = new Vector3(transform.position.x, transform.position.y);
         dood.transform.position = new Vector3(transform.position.x, transform.position.y + 4.5f, transform.position.z);
         #region Test Kill
-        /*Testing Purposes
+        // Testing Purposes
          if(Input.GetKey(KeyCode.X))
          {
-             Dead();
+            isDead = true;
+            Time.timeScale = 0;
 
-         }
-           */
+            enterNameScreen.SetActive(true);
+            //Dead();
+
+        }
+           
         #endregion
     }
     #endregion
@@ -196,10 +212,19 @@ public class Player : MonoBehaviour
         deathSound.Play();
         pain.Stop();
         // Bring up the death screen when dead
-        Debug.Log("RIP Caveman");
+        //Debug.Log("RIP Caveman");
         isDead = true;
-        deathScreen.gameObject.SetActive(true);
         Time.timeScale = 0;
+
+        //enterNameScreen.SetActive(true);
+
+        deathScreen.gameObject.SetActive(true);
+
+        highScore = score > highScore ? score : highScore;  
+
+        highScoreText.text = PlayerName + " - " + highScore.ToString();
+        PlayerPrefs.SetInt("Highscore", highScore);
+
 
     }
     #endregion
@@ -249,5 +274,12 @@ public class Player : MonoBehaviour
         StartCoroutine(PlayOnRepeat(audio,soundDelay));
 
        
+    }
+
+    public void OnEndInputName()
+    {
+        PlayerName = nameInput.text;
+        enterNameScreen.SetActive(false);
+        Dead();
     }
 }
