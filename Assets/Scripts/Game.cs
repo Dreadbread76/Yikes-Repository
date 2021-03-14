@@ -11,6 +11,8 @@ public class Game : MonoBehaviour
     [SerializeField]
     public GameObject pauseScreen;
     [SerializeField]
+    public GameObject gameOverScreen;
+    [SerializeField]
     public string mainMenuScene;
     [SerializeField]
     public GameObject loadingScreen; 
@@ -74,7 +76,7 @@ public class Game : MonoBehaviour
     {
         // SceneManager.LoadScene(mainMenuScene);
         // Time.timeScale = 1f;
-
+        gameOverScreen.SetActive(false);
         StartCoroutine(LoadMainMenu());
     }
 

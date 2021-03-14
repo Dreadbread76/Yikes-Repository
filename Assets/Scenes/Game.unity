@@ -757,9 +757,9 @@ MonoBehaviour:
   - {fileID: 1023533353}
   - {fileID: 1023533352}
   deathScreen: {fileID: 992016698}
-  highScoreText: {fileID: 0}
-  enterNameScreen: {fileID: 0}
-  nameInput: {fileID: 0}
+  highScoreText: {fileID: 1254083220}
+  enterNameScreen: {fileID: 2020453940}
+  nameInput: {fileID: 1282392437}
   distance: 0
   distanceText: {fileID: 1023533356}
   deathSound: {fileID: 499821448}
@@ -3028,7 +3028,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 215606228}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnEndInputName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

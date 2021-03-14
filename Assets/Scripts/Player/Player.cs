@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,33 +9,41 @@ public class Player : MonoBehaviour
     #region Variables 
     Rigidbody rigi;
     public GameObject dood;
+    public struct Highscore
+    {
+        public int Score { get; set; }
+        public string Name { get; set; }
+    }
 
     [Header("Markers")]
     public int lane;
     public GameObject laneParent;
     public GameObject[] laneMarkers = new GameObject[3];
     public float minDistanceToMarker;
-    
+
 
     [Header("Stats")]
     public int score = 0;
-    public int highScore = 0;
     public float shiftSpeed = 1;
     public int health;
     public int maxHealth = 3;
     public bool isGrounded;
     public float jumpHeight = 12;
     public bool isDead = false;
+    public Highscore[] highscores = new Highscore[3];
 
     [Header("Player UI")]
     public Text scoreText;
-  //  public Text healthText;
     public GameObject[] healthBar;
     public GameObject deathScreen;
-    public Text highScoreText;
+    public Text highscoreName1Text;
+    public Text highscoreScore1Text;
+    public Text highscoreName2Text;
+    public Text highscoreScore2Text;
+    public Text highscoreName3Text;
+    public Text highscoreScore3Text;
     public GameObject enterNameScreen;
     public InputField nameInput;
-    private string PlayerName = "";
     [SerializeField] private int distance;
     public Text distanceText;
 
@@ -49,8 +58,11 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        highScore = PlayerPrefs.GetInt("Highscore", 0);
-        Debug.Log(highScore);
+        for (int i=0; i<highscores.Length; i++)
+        {
+            highscores[i].Score = PlayerPrefs.GetInt("Highscore" + i, 0);
+            highscores[i].Name = PlayerPrefs.GetString("HighscoreName" + i, "");
+        }
     }
 
     #endregion
@@ -71,6 +83,13 @@ public class Player : MonoBehaviour
         StartCoroutine(PlayOnRepeat(dinosaur, 15f));
         StartCoroutine(PlayOnRepeat(volcanoBoom, 20f));
         rigi.AddForce(new Vector3(-30, -30, 0) * 1, ForceMode.Impulse); //Yay sphere goes diagonally down
+
+        highscoreName1Text.text = highscores[0].Name;
+        highscoreScore1Text.text = highscores[0].Score.ToString();
+        highscoreName2Text.text = highscores[1].Name;
+        highscoreScore2Text.text = highscores[1].Score.ToString();
+        highscoreName3Text.text = highscores[2].Name;
+        highscoreScore3Text.text = highscores[2].Score.ToString();
 
     }
     #endregion
@@ -113,7 +132,7 @@ public class Player : MonoBehaviour
             // Die when your health hits zero
             if (health < 0 || Input.GetKeyDown(KeyCode.X))
             {
-                Dead();
+                //Dead();
             }
             #endregion
             
@@ -127,7 +146,11 @@ public class Player : MonoBehaviour
             isDead = true;
             Time.timeScale = 0;
 
-            enterNameScreen.SetActive(true);
+            if (distance > highscores[0].Score)
+                enterNameScreen.SetActive(true);
+            else
+                Dead();
+            
             //Dead();
 
         }
@@ -216,14 +239,17 @@ public class Player : MonoBehaviour
         isDead = true;
         Time.timeScale = 0;
 
-        //enterNameScreen.SetActive(true);
-
         deathScreen.gameObject.SetActive(true);
 
-        highScore = score > highScore ? score : highScore;  
-
-        highScoreText.text = PlayerName + " - " + highScore.ToString();
-        PlayerPrefs.SetInt("Highscore", highScore);
+        //highscore.Score = score > highscore.Score ? score : highscore.Score;
+        if (distance > highscores[0].Score)
+        {
+            highscores[0].Score = distance;
+            highscoreName1Text.text = highscores[0].Name;
+            highscoreScore1Text.text = highscores[0].Score.ToString();
+            PlayerPrefs.SetInt("Highscore0", highscores[0].Score);
+            PlayerPrefs.SetString("HighscoreName0", highscores[0].Name);
+        }
 
 
     }
@@ -278,7 +304,7 @@ public class Player : MonoBehaviour
 
     public void OnEndInputName()
     {
-        PlayerName = nameInput.text;
+        highscores[0].Name = nameInput.text;
         enterNameScreen.SetActive(false);
         Dead();
     }
