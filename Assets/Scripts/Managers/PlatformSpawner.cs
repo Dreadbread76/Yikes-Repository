@@ -22,7 +22,7 @@ namespace EggRunner.Lara
             Vector3 position = player.transform.position;
             Quaternion rotation = Quaternion.Euler(0, 0, 20);
 
-            if(currentPlatform != null)
+            if (currentPlatform != null)
             {
                 // We have already spawned a platform
 
@@ -38,15 +38,20 @@ namespace EggRunner.Lara
             #endregion
 
             #region Spawn Obstacles
-            Quaternion newRot = Quaternion.Euler(90, 90, 0); //Rotation works
+            Quaternion newRot = Quaternion.Euler(90, 90, 0);
             Vector3 newPos = position - new Vector3(0, -3, player.laneMarkers[lane].transform.position.z);
             Debug.Log(lane);
 
+            if (spawnables != null)
+            {
+                Instantiate(spawnables[Random.Range(0, spawnables.Count)], spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, newRot);
+            }
+
+            #region Object Pool Test
             /* Vector3 timTamOffset = new Vector3(15f, 5f, 0); //Push forward and separates the spawnables
             Vector3 boulderOffset = new Vector3(25f, 5f, 0);
             Vector3 meatOffset = new Vector3(35f, 5f, 0);*/
 
-            #region Object Pool Test
             //This will request a GO to become active and set pos and rot of that GO
             //Only aquires a GO that is pre-instantiated and only gets set active or inactive when needed
             /*GameObject timTam = SpawnablesPool.Instance.GetPooledObject("Tim Tam"); //Testing purposes using Tim Tams first
@@ -57,50 +62,26 @@ namespace EggRunner.Lara
                 timTam.SetActive(true);
             }*/
 
-            foreach (Transform points in spawnPoints)
-            {
-                if(spawnables != null)
-                {
-                    Instantiate(spawnables[Random.Range(0, spawnables.Count)], points.position, points.rotation);
-                }
-            }
-
-           /* GameObject boulder = SpawnablesPool.Instance.GetPooledObject("Obstacle"); 
-            if (boulder != null)
-            {
-                boulder.transform.position = newPos;
-                boulder.transform.rotation = newRot;
-                boulder.SetActive(true);
-            }
+            /* GameObject boulder = SpawnablesPool.Instance.GetPooledObject("Obstacle"); 
+             if (boulder != null)
+             {
+                 boulder.transform.position = newPos;
+                 boulder.transform.rotation = newRot;
+                 boulder.SetActive(true);
+             }
 
 
-            GameObject meat = SpawnablesPool.Instance.GetPooledObject("Meat"); 
-            if (meat != null)
-            {
-                meat.transform.position = newPos;
-                meat.transform.rotation = newRot;
-                meat.SetActive(true);
-            }*/
+             GameObject meat = SpawnablesPool.Instance.GetPooledObject("Meat"); 
+             if (meat != null)
+             {
+                 meat.transform.position = newPos;
+                 meat.transform.rotation = newRot;
+                 meat.SetActive(true);
+             }*/
             #endregion
 
             #endregion
-        }
-
-        public void SpawnObject(int num)
-        {
-            /*switch(num)
-            {
-                case (0 - 60):
-                default:
-                    spawnables[0];
-                    break;
-                        cas
-                    
-            }*/
-
-                
         }
     }
-   
 }
 
