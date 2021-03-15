@@ -12,6 +12,7 @@ namespace EggRunner.Lara
         public Player player; //Ref to player object for setting platforms to its position
         public int lane;
         public List<GameObject> spawnables = new List<GameObject>();
+        public Transform[] spawnPoints;
         #endregion
 
         //IT WORKS!
@@ -40,23 +41,31 @@ namespace EggRunner.Lara
             Quaternion newRot = Quaternion.Euler(90, 90, 0); //Rotation works
             Vector3 newPos = position - new Vector3(0, -3, player.laneMarkers[lane].transform.position.z);
             Debug.Log(lane);
-            Vector3 timTamOffset = new Vector3(15f, 5f, 0); //Push forward and separates the spawnables
+
+            /* Vector3 timTamOffset = new Vector3(15f, 5f, 0); //Push forward and separates the spawnables
             Vector3 boulderOffset = new Vector3(25f, 5f, 0);
-            Vector3 meatOffset = new Vector3(35f, 5f, 0);
+            Vector3 meatOffset = new Vector3(35f, 5f, 0);*/
 
             #region Object Pool Test
             //This will request a GO to become active and set pos and rot of that GO
             //Only aquires a GO that is pre-instantiated and only gets set active or inactive when needed
-            GameObject timTam = SpawnablesPool.Instance.GetPooledObject("Tim Tam"); //Testing purposes using Tim Tams first
+            /*GameObject timTam = SpawnablesPool.Instance.GetPooledObject("Tim Tam"); //Testing purposes using Tim Tams first
             if(timTam != null)
             {
-                timTam.transform.position = newPos + timTamOffset;
+                timTam.transform.position = newPos;
                 timTam.transform.rotation = newRot;
                 timTam.SetActive(true);
-            }
-            
+            }*/
 
-            GameObject boulder = SpawnablesPool.Instance.GetPooledObject("Obstacle"); 
+            foreach (Transform points in spawnPoints)
+            {
+                if(spawnables != null)
+                {
+                    Instantiate(spawnables[Random.Range(0, spawnables.Count)], points.position, points.rotation);
+                }
+            }
+
+           /* GameObject boulder = SpawnablesPool.Instance.GetPooledObject("Obstacle"); 
             if (boulder != null)
             {
                 boulder.transform.position = newPos;
@@ -71,7 +80,7 @@ namespace EggRunner.Lara
                 meat.transform.position = newPos;
                 meat.transform.rotation = newRot;
                 meat.SetActive(true);
-            }
+            }*/
             #endregion
 
             #endregion

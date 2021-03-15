@@ -56,6 +56,9 @@ public class Player : MonoBehaviour
     public AudioSource volcanoBoom; //wait
     public AudioSource timTam;
 
+    [Header("Animation")]
+    public Animation run;
+
     private void Awake()
     {
         for (int i=0; i<highscores.Length; i++)
@@ -97,6 +100,7 @@ public class Player : MonoBehaviour
     #region Update
     void Update()
     {
+
         
         #region Measure Distance
         distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
@@ -108,6 +112,8 @@ public class Player : MonoBehaviour
             #region Movement
             if (isGrounded)
             {
+                //Play Animation NOPE DONT WORK
+                //run.Play();
 
                 // Change lane with the A or D button (A left, D right)
                 if (Input.GetKeyDown(KeyCode.A) && lane > 0)
@@ -138,7 +144,7 @@ public class Player : MonoBehaviour
             
         }
         laneParent.transform.position = new Vector3(transform.position.x, transform.position.y);
-        dood.transform.position = new Vector3(transform.position.x, transform.position.y + 4.5f, transform.position.z);
+        dood.transform.position = new Vector3(transform.position.x, transform.position.y + 2.5f, transform.position.z);
         #region Test Kill
         // Testing Purposes
          if(Input.GetKey(KeyCode.X))
