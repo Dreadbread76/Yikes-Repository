@@ -42,11 +42,13 @@ namespace EggRunner.Lara
             Vector3 newPos = position - new Vector3(0, -3, player.laneMarkers[lane].transform.position.z);
             Debug.Log(lane);
 
-            if (spawnables != null)
-            {
-                Instantiate(spawnables[Random.Range(0, spawnables.Count)], spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, newRot);
-            }
-
+            #region Original Object Spawning
+            /*  if (spawnables != null)
+              {
+                  Instantiate(spawnables[Random.Range(0, spawnables.Count)], spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, newRot);
+              }
+              */
+            #endregion
             #region Object Pool Test
             /* Vector3 timTamOffset = new Vector3(15f, 5f, 0); //Push forward and separates the spawnables
             Vector3 boulderOffset = new Vector3(25f, 5f, 0);

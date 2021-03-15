@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     #region Variables 
     Rigidbody rigi;
+    Renderer rend;
     public GameObject dood;
     public struct Highscore
     {
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
 
     [Header("Stats")]
     public int score = 0;
+    public int timTams = 0;
     public float shiftSpeed = 1;
     public int health;
     public int maxHealth = 3;
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
     public float jumpHeight = 12;
     public bool isDead = false;
     public Highscore[] highscores = new Highscore[3];
+    public Material[] eggMaterials = new Material[3];
 
     [Header("Player UI")]
     public Text scoreText;
@@ -46,6 +49,7 @@ public class Player : MonoBehaviour
     public InputField nameInput;
     [SerializeField] private int distance;
     public Text distanceText;
+    public Text timTamText;
 
     [Header("Music")]
     public AudioSource deathSound; //set
@@ -54,7 +58,7 @@ public class Player : MonoBehaviour
     public AudioSource pain; //set
     public AudioSource collectableSound; //set
     public AudioSource volcanoBoom; //wait
-    public AudioSource timTam;
+    public AudioSource timTamSound;
 
     [Header("Animation")]
     public Animation run;
@@ -75,10 +79,13 @@ public class Player : MonoBehaviour
         rigi = GetComponent<Rigidbody>();
         lane = 1;
         health = maxHealth - 1;
+        rend = this.gameObject.GetComponent<Renderer>();
+        rend.material = eggMaterials[health];
         isDead = false;
         deathScreen.gameObject.SetActive(false);
         enterNameScreen.SetActive(false);
         score = 0;
+        timTams = 0;
         scoreText.text = "Score: " + score;
 
 
@@ -96,7 +103,6 @@ public class Player : MonoBehaviour
 
     }
     #endregion
-
     #region Update
     void Update()
     {
@@ -136,9 +142,15 @@ public class Player : MonoBehaviour
             #endregion
             #region Death
             // Die when your health hits zero
-            if (health < 0 || Input.GetKeyDown(KeyCode.X))
+            if (health < 0 )
             {
-                //Dead();
+                isDead = true;
+                Time.timeScale = 0;
+
+                if (distance > highscores[0].Score)
+                    enterNameScreen.SetActive(true);
+                else
+                    Dead();
             }
             #endregion
             
@@ -147,7 +159,7 @@ public class Player : MonoBehaviour
         dood.transform.position = new Vector3(transform.position.x, transform.position.y + 2.5f, transform.position.z);
         #region Test Kill
         // Testing Purposes
-         if(Input.GetKey(KeyCode.X))
+        /* if(Input.GetKey(KeyCode.X))
          {
             isDead = true;
             Time.timeScale = 0;
@@ -159,7 +171,7 @@ public class Player : MonoBehaviour
             
             //Dead();
 
-        }
+        }*/
            
         #endregion
     }
@@ -177,9 +189,11 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Tim Tam"))
         {
-            timTam.Play();
+            timTamSound.Play();
             score++;
+            timTams++;
             scoreText.text = "Score: " + score;
+            timTamText.text = "Tim Tams: " + timTams;
             other.gameObject.SetActive(false);
             //Destroy(other.gameObject);
         }
@@ -272,7 +286,6 @@ public class Player : MonoBehaviour
         
     }
     #endregion
-
     #region Health
     public void HealthUp()
     {
@@ -281,22 +294,34 @@ public class Player : MonoBehaviour
             health++;
 
             GameObject healthMeat = healthBar[health];
+            rend.material = eggMaterials[health];
             healthMeat.SetActive(true);
         }
        
     }
     public void HealthDown()
     {
-        GameObject healthMeat = healthBar[health];
-        healthMeat.SetActive(false);
-
-        health--;
-        if (!isDead)
+        if(health > -1)
         {
-            pain.Play();
+            GameObject healthMeat = healthBar[health];
+            healthMeat.SetActive(false);
+            if (health > 0)
+            {
+                rend.material = eggMaterials[health - 1];
+            }
+            
+            health--;
+            
+
+            if (!isDead)
+            {
+                pain.Play();
+            }
         }
+        
     }
     #endregion
+    #region Sound
     public IEnumerator PlayOnRepeat(AudioSource audio, float soundDelay)
     {
         Debug.Log("Barney");
@@ -314,4 +339,5 @@ public class Player : MonoBehaviour
         enterNameScreen.SetActive(false);
         Dead();
     }
+    #endregion
 }

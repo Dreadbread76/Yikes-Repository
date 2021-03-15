@@ -7,6 +7,8 @@ namespace EggRunner.Lara
         PlatformSpawner trackSpawner;
         
 
+        
+
         // Start is called before the first frame update
         void Start()
         {
@@ -16,7 +18,8 @@ namespace EggRunner.Lara
         //When enter trigger, call move track function
         public void SpawnTriggerEnt()
         {
-           trackSpawner.SpawnMaster();
+            trackSpawner.SpawnMaster();
+            
         }
 
         private void Update()
