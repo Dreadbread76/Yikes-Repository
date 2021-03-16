@@ -469,7 +469,6 @@ GameObject:
   - component: {fileID: 195219865}
   - component: {fileID: 195219866}
   - component: {fileID: 195219867}
-  - component: {fileID: 195219868}
   m_Layer: 0
   m_Name: MANAGER
   m_TagString: Untagged
@@ -545,29 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed04af30a93dba943a11e92705d9ce4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &195219868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195219864}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e4d5f49c77eea54e8b3777b19528c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsToPool:
-  - objectToPool: {fileID: 3102064394532148737, guid: 85de8fb61c7fefe41917562d8f1d462e, type: 3}
-    amountToPool: 10
-    shouldExpand: 1
-  - objectToPool: {fileID: 729784585831127541, guid: 9cc83d57ff8dc7b4bbee881655f877a7, type: 3}
-    amountToPool: 2
-    shouldExpand: 1
-  - objectToPool: {fileID: 2768318392081400792, guid: 5d95352a5340d3a44af946572ad6faa7, type: 3}
-    amountToPool: 5
-    shouldExpand: 1
-  pooledSpawnables: []
 --- !u!4 &196292392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 565976646345309695, guid: 5783337b3c878764a93b430d69f88fe3, type: 3}
@@ -588,7 +564,6 @@ GameObject:
   - component: {fileID: 215606226}
   - component: {fileID: 215606228}
   - component: {fileID: 215606222}
-  - component: {fileID: 215606229}
   m_Layer: 6
   m_Name: Egg
   m_TagString: Player
@@ -760,25 +735,6 @@ MonoBehaviour:
   volcanoBoom: {fileID: 2016993963}
   timTamSound: {fileID: 1144035385}
   run: {fileID: 0}
---- !u!95 &215606229
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215606220}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3190fa3aae10cf94aac8bc7a1c6d9bd4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &257432790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 565976646276812289, guid: 5783337b3c878764a93b430d69f88fe3, type: 3}
@@ -2562,7 +2518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsScreen: {fileID: 1023533362}
   pauseScreen: {fileID: 1023533361}
-  gameOverScreen: {fileID: 0}
+  gameOverScreen: {fileID: 992016698}
   mainMenuScene: MainMenu
   loadingScreen: {fileID: 1023533360}
   loadingIcon: {fileID: 1023533359}

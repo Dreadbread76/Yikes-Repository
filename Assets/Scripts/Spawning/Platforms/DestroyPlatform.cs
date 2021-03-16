@@ -6,7 +6,7 @@ namespace EggRunner.Lara
     {
         private void Start()
         {
-            Destroy(gameObject, 50f); //Destroy level track after a while  
+            Destroy(gameObject, 100f); //Destroy level track after a while  
         }
     }
 }
