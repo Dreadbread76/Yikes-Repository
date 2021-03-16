@@ -147,7 +147,8 @@ public class Player : MonoBehaviour
                 isDead = true;
                 Time.timeScale = 0;
 
-                if (distance > highscores[0].Score)
+                // if the current score is higher then the 3rd place you have to set a new highscore
+                if (distance > highscores[2].Score)
                     enterNameScreen.SetActive(true);
                 else
                     Dead();
@@ -260,18 +261,6 @@ public class Player : MonoBehaviour
         Time.timeScale = 0;
 
         deathScreen.gameObject.SetActive(true);
-
-        //highscore.Score = score > highscore.Score ? score : highscore.Score;
-        if (distance > highscores[0].Score)
-        {
-            highscores[0].Score = distance;
-            highscoreName1Text.text = highscores[0].Name;
-            highscoreScore1Text.text = highscores[0].Score.ToString();
-            PlayerPrefs.SetInt("Highscore0", highscores[0].Score);
-            PlayerPrefs.SetString("HighscoreName0", highscores[0].Name);
-        }
-
-
     }
     #endregion
     #region Restart
@@ -332,12 +321,89 @@ public class Player : MonoBehaviour
 
        
     }
+    #endregion
 
+    #region highscore
     public void OnEndInputName()
     {
-        highscores[0].Name = nameInput.text;
+        // check the hghscore position
+        int highscorePos = CheckTheHighscorePosition();
+
+        // update the positions and the UI
+        switch (highscorePos)
+        {
+            case 3: // 3rd place, replace only the 3rd
+                highscores[2].Name = nameInput.text;
+                highscoreName3Text.text = highscores[2].Name;
+                PlayerPrefs.SetString("HighscoreName2", highscores[2].Name);
+                highscores[2].Score = distance;
+                highscoreScore3Text.text = highscores[2].Score.ToString();
+                PlayerPrefs.SetInt("Highscore2", highscores[2].Score);
+
+                break;
+            case 2: // 2nd place, shift the 2nd to 3rd and replace
+                highscores[2].Name = highscores[1].Name;
+                highscoreName3Text.text = highscores[2].Name;
+                PlayerPrefs.SetString("HighscoreName2", highscores[2].Name);
+                highscores[2].Score = highscores[1].Score;
+                highscoreScore3Text.text = highscores[2].Score.ToString();
+                PlayerPrefs.SetInt("Highscore2", highscores[2].Score);
+
+                highscores[1].Name = nameInput.text;
+                highscoreName2Text.text = highscores[1].Name;
+                PlayerPrefs.SetString("HighscoreName1", highscores[1].Name);
+                highscores[1].Score = distance;
+                highscoreScore2Text.text = highscores[1].Score.ToString();
+                PlayerPrefs.SetInt("Highscore1", highscores[1].Score);
+
+                break;
+            case 1: // 1st place, shift 1st and 2nd pos and replace
+                highscores[2].Name = highscores[1].Name;
+                highscoreName3Text.text = highscores[2].Name;
+                PlayerPrefs.SetString("HighscoreName2", highscores[2].Name);
+                highscores[2].Score = highscores[1].Score;
+                highscoreScore3Text.text = highscores[2].Score.ToString();
+                PlayerPrefs.SetInt("Highscore2", highscores[2].Score);
+
+                highscores[1].Name = highscores[0].Name;
+                highscoreName2Text.text = highscores[1].Name;
+                PlayerPrefs.SetString("HighscoreName1", highscores[1].Name);
+                highscores[1].Score = highscores[0].Score;
+                highscoreScore2Text.text = highscores[1].Score.ToString();
+                PlayerPrefs.SetInt("Highscore1", highscores[1].Score);
+
+                highscores[0].Name = nameInput.text;
+                highscoreName1Text.text = highscores[0].Name;
+                PlayerPrefs.SetString("HighscoreName0", highscores[0].Name);
+                highscores[0].Score = distance;
+                highscoreScore1Text.text = highscores[0].Score.ToString();
+                PlayerPrefs.SetInt("Highscore0", highscores[0].Score);
+
+                break;
+        }
+
         enterNameScreen.SetActive(false);
         Dead();
     }
+
+    public int CheckTheHighscorePosition()
+    {
+        if (distance < highscores[1].Score)
+        {
+            // im in the 3rd place
+            return 3;
+        }
+        else if (distance < highscores[0].Score)
+        {
+            // im at the 2nd place
+            return 2;
+        }
+        else
+        {
+            // higher than the 1st, so 1st place
+            return 1;
+        }
+    }
     #endregion
+
 }
