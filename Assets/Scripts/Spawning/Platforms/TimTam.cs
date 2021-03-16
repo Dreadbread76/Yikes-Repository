@@ -11,7 +11,7 @@ namespace EggRunner.Lara
         {
             if (other.gameObject.CompareTag("Meat"))
             {
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
             }
         }
     }
