@@ -23,9 +23,6 @@ namespace EggRunner.Lara
             //objectSpawner.SpawnObstacles();
         }
 
-        private void Update()
-        {
-            
-        }
+      
     }
 }

@@ -62,7 +62,8 @@ public class Player : MonoBehaviour
 
     [Header("Animation")]
     public Animation run;
-
+    #endregion
+    #region Awake
     private void Awake()
     {
         for (int i=0; i<highscores.Length; i++)
