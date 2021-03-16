@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3102064394528901903}
   - component: {fileID: 3102064394530423139}
   - component: {fileID: 4918073496268680224}
+  - component: {fileID: 8366492594560655888}
   m_Layer: 0
   m_Name: Small Boulder
   m_TagString: Obstacle
@@ -95,3 +96,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.6, z: 0.6}
   m_Center: {x: -0.023859546, y: -0.0027752668, z: 0.0335768}
+--- !u!114 &8366492594560655888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102064394532148737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39f8c6fba6533148b9eecf46fa50cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

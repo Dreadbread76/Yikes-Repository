@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4675313450021494493}
   - component: {fileID: 4675313450020653769}
   - component: {fileID: 4675313450019291301}
+  - component: {fileID: 4125260103863742124}
   - component: {fileID: 3435738712372522470}
   m_Layer: 0
   m_Name: Volcano Rock
@@ -82,6 +83,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4125260103863742124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4675313450021803975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39f8c6fba6533148b9eecf46fa50cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &3435738712372522470
 BoxCollider:
   m_ObjectHideFlags: 0

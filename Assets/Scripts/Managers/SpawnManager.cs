@@ -5,7 +5,7 @@ namespace EggRunner.Lara
     public class SpawnManager : MonoBehaviour
     {
         PlatformSpawner trackSpawner;
-        
+        //ObjectSpawner objectSpawner;
 
         
 
@@ -13,13 +13,14 @@ namespace EggRunner.Lara
         void Start()
         {
             trackSpawner = GetComponent<PlatformSpawner>();
+            //objectSpawner = GetComponent<ObjectSpawner>();
         }
 
         //When enter trigger, call move track function
         public void SpawnTriggerEnt()
         {
             trackSpawner.SpawnMaster();
-            
+            //objectSpawner.SpawnObstacles();
         }
 
         private void Update()

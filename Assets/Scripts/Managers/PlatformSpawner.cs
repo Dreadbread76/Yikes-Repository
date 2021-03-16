@@ -11,8 +11,8 @@ namespace EggRunner.Lara
         public GameObject currentPlatform;
         public Player player; //Ref to player object for setting platforms to its position
         public int lane;
-        public List<GameObject> spawnables = new List<GameObject>();
-        public Transform[] spawnPoints;
+        //public List<GameObject> spawnables = new List<GameObject>();
+        //public Transform[] spawnPoints;
         #endregion
 
         //IT WORKS!
@@ -38,9 +38,9 @@ namespace EggRunner.Lara
             #endregion
 
             #region Spawn Obstacles
-            Quaternion newRot = Quaternion.Euler(90, 90, 0);
+            /*Quaternion newRot = Quaternion.Euler(90, 90, 0);
             Vector3 newPos = position - new Vector3(0, -3, player.laneMarkers[lane].transform.position.z);
-            Debug.Log(lane);
+            Debug.Log(lane);*/
 
             #region Original Object Spawning
             /*  if (spawnables != null)
