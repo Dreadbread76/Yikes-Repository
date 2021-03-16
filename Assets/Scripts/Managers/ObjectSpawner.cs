@@ -27,7 +27,7 @@ public class ObjectSpawner : MonoBehaviour
 
             if (spawnables != null && spawnChance > 0)
             {
-                Instantiate(spawnables[Random.Range(0, spawnables.Count)], spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, newRot);
+                Instantiate(spawnables[Random.Range(0, spawnables.Count)], trans.transform.position, newRot);
             }
         }
 
