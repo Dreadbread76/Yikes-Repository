@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -650,6 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dood: {fileID: 919132149297071009}
+  testImage: {fileID: 3800342349774161071, guid: 376f78b9d8f5627409b3c3cbd53b685a, type: 3}
   lane: 1
   laneParent: {fileID: 58377292}
   laneMarkers:
@@ -1607,7 +1608,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.2036224, y: -0.6771543, z: 0.2036224, w: 0.6771543}
+  m_LocalRotation: {x: 0.20362242, y: -0.67715424, z: 0.20362239, w: 0.67715436}
   m_LocalPosition: {x: 23.787497, y: 59.811394, z: -0.0000013069807}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1947,6 +1948,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseOptions
       objectReference: {fileID: 0}
+    - target: {fileID: 1278402784912524365, guid: 39f198e3c7aec9a479ca2aa7a5b7a9d8, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3275108416755401018, guid: 39f198e3c7aec9a479ca2aa7a5b7a9d8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2014,6 +2019,10 @@ PrefabInstance:
     - target: {fileID: 4421539500533552638, guid: 39f198e3c7aec9a479ca2aa7a5b7a9d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Game, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926047193640691923, guid: 39f198e3c7aec9a479ca2aa7a5b7a9d8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5081448547540297202, guid: 39f198e3c7aec9a479ca2aa7a5b7a9d8, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3189,7 +3198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396720460}
-  m_LocalRotation: {x: 0.20854409, y: -0.67565477, z: 0.20854408, w: 0.67565477}
+  m_LocalRotation: {x: 0.20854409, y: -0.6756547, z: 0.20854406, w: 0.6756548}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

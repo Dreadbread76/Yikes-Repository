@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     Rigidbody rigi;
     Renderer rend;
     public GameObject dood;
+    public Image testImage;
     public struct Highscore
     {
         public int Score { get; set; }
