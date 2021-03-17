@@ -108,10 +108,13 @@ public class Player : MonoBehaviour
     #region Update
     void Update()
     {
-      
         #region Measure Distance
         distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
         distance = (int)-transform.position.x;
+        if (distance > 2000)
+        {
+            StartCoroutine(JumpScare(testImage, 1.0f));
+        }
         #endregion
 
         score = distance + (timTams * 10);
@@ -187,7 +190,6 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             HealthDown();
-            StartCoroutine(JumpScare(testImage, 1.0f));
             // healthText.text = "Health: " + health;
             other.gameObject.SetActive(false);
             //Destroy(other.gameObject);
