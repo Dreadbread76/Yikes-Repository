@@ -11,6 +11,7 @@ namespace EggRunner.Lara
         public GameObject currentPlatform;
         public Player player; //Ref to player object for setting platforms to its position
         public int lane;
+        
         //public List<GameObject> spawnables = new List<GameObject>();
         //public Transform[] spawnPoints;
         #endregion

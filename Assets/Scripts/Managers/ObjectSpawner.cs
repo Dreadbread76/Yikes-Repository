@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     public List<GameObject> spawnables = new List<GameObject>();
+    public List<GameObject> spawnedEntities;
     public Transform[] spawnPoints;
 
     // Update is called once per frame
@@ -27,7 +28,9 @@ public class ObjectSpawner : MonoBehaviour
 
             if (spawnables != null)
             {
-                Instantiate(spawnables[Random.Range(0, spawnables.Count)], trans.transform.position, newRot);
+                GameObject spawnedObject = spawnables[Random.Range(0, spawnables.Count)];
+                Instantiate(spawnedObject, trans.transform.position, newRot);
+                spawnedEntities.Add(spawnedObject);
             }
         }
 
