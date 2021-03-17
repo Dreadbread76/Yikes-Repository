@@ -23,9 +23,9 @@ public class ObjectSpawner : MonoBehaviour
 
         foreach(Transform trans in spawnPoints)
         {
-            int spawnChance = Random.Range(0, 2);
+            //int spawnChance = Random.Range(0, spawnables.Count);
 
-            if (spawnables != null && spawnChance > 0)
+            if (spawnables != null)
             {
                 Instantiate(spawnables[Random.Range(0, spawnables.Count)], trans.transform.position, newRot);
             }

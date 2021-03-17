@@ -108,12 +108,14 @@ public class Player : MonoBehaviour
     #region Update
     void Update()
     {
-
-        
+      
         #region Measure Distance
         distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
         distance = (int)-transform.position.x;
         #endregion
+
+        score = distance + (timTams * 10);
+        scoreText.text = "Score: " + score;
 
         if (!isDead)
         {
@@ -150,7 +152,7 @@ public class Player : MonoBehaviour
                 Time.timeScale = 0;
 
                 // if the current score is higher then the 3rd place you have to set a new highscore
-                if (distance > highscores[2].Score)
+                if (score > highscores[2].Score)
                     enterNameScreen.SetActive(true);
                 else
                     Dead();
@@ -193,7 +195,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Tim Tam"))
         {
             timTamSound.Play();
-            score++;
+            //score++;
             timTams++;
             scoreText.text = "Score: " + score;
             timTamText.text = "Tim Tams: " + timTams;
@@ -338,7 +340,7 @@ public class Player : MonoBehaviour
                 highscores[2].Name = nameInput.text;
                 highscoreName3Text.text = highscores[2].Name;
                 PlayerPrefs.SetString("HighscoreName2", highscores[2].Name);
-                highscores[2].Score = distance;
+                highscores[2].Score = score;
                 highscoreScore3Text.text = highscores[2].Score.ToString();
                 PlayerPrefs.SetInt("Highscore2", highscores[2].Score);
 
@@ -354,7 +356,7 @@ public class Player : MonoBehaviour
                 highscores[1].Name = nameInput.text;
                 highscoreName2Text.text = highscores[1].Name;
                 PlayerPrefs.SetString("HighscoreName1", highscores[1].Name);
-                highscores[1].Score = distance;
+                highscores[1].Score = score;
                 highscoreScore2Text.text = highscores[1].Score.ToString();
                 PlayerPrefs.SetInt("Highscore1", highscores[1].Score);
 
@@ -377,7 +379,7 @@ public class Player : MonoBehaviour
                 highscores[0].Name = nameInput.text;
                 highscoreName1Text.text = highscores[0].Name;
                 PlayerPrefs.SetString("HighscoreName0", highscores[0].Name);
-                highscores[0].Score = distance;
+                highscores[0].Score = score;
                 highscoreScore1Text.text = highscores[0].Score.ToString();
                 PlayerPrefs.SetInt("Highscore0", highscores[0].Score);
 
@@ -390,12 +392,12 @@ public class Player : MonoBehaviour
 
     public int CheckTheHighscorePosition()
     {
-        if (distance < highscores[1].Score)
+        if (score < highscores[1].Score)
         {
             // im in the 3rd place
             return 3;
         }
-        else if (distance < highscores[0].Score)
+        else if (score < highscores[0].Score)
         {
             // im at the 2nd place
             return 2;

@@ -21,13 +21,7 @@ public class Game : MonoBehaviour
     [SerializeField]
     public Text loadingText;
     [SerializeField]
-    public Text scoreText;
-    [SerializeField]
-    public Text distanceText;
-    [SerializeField]
-    public Text collectibleText;
-    [SerializeField]
-    public List<GameObject> healthPoints;
+    private Player player;
 
     private bool isPaused = false;
 
@@ -35,9 +29,12 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!player.isDead)
         {
-            PauseUnpause();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                PauseUnpause();
+            }
         }
     }
 
