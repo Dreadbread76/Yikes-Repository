@@ -88,10 +88,10 @@ public class Player : MonoBehaviour
         enterNameScreen.SetActive(false);
         score = 0;
         timTams = 0;
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
 
 
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
         StartCoroutine(PlayOnRepeat(dinosaur, 15f));
         StartCoroutine(PlayOnRepeat(volcanoBoom, 20f));
         rigi.AddForce(new Vector3(-30, -30, 0) * 1, ForceMode.Impulse); //Yay sphere goes diagonally down
@@ -111,14 +111,14 @@ public class Player : MonoBehaviour
         #region Measure Distance
         distanceText.text = distance.ToString(); //Display distance travelled
         distance = (int)-transform.position.x;
-        if (distance > 2000)
+        if (distance%1000 == 1)
         {
-            StartCoroutine(JumpScare(testImage, 1.0f));
+            StartCoroutine(JumpScare(testImage, 0.5f));
         }
         #endregion
 
         score = distance + (timTams * 10);
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
 
         if (!isDead)
         {
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour
             timTamSound.Play();
             //score++;
             timTams++;
-            scoreText.text = "Score: " + score;
+            scoreText.text = score.ToString();
             timTamText.text = timTams.ToString();
             other.gameObject.SetActive(false);
             //Destroy(other.gameObject);
