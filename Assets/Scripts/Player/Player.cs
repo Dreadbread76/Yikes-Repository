@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     Rigidbody rigi;
     Renderer rend;
     public GameObject dood;
-    public Image testImage;
+    public GameObject testImage;
     public struct Highscore
     {
         public int Score { get; set; }
@@ -187,7 +187,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             HealthDown();
-
+            StartCoroutine(JumpScare(testImage, 1.0f));
             // healthText.text = "Health: " + health;
             other.gameObject.SetActive(false);
             //Destroy(other.gameObject);
@@ -409,5 +409,12 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
+
+    IEnumerator JumpScare(GameObject go, float delay)
+    {
+        go.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        go.SetActive(false);
+    }
 
 }
