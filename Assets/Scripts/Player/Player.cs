@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         #region Measure Distance
-        distanceText.text = "Distance: " + distance.ToString(); //Display distance travelled
+        distanceText.text = distance.ToString(); //Display distance travelled
         distance = (int)-transform.position.x;
         if (distance > 2000)
         {
@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
             //score++;
             timTams++;
             scoreText.text = "Score: " + score;
-            timTamText.text = "Tim Tams: " + timTams;
+            timTamText.text = timTams.ToString();
             other.gameObject.SetActive(false);
             //Destroy(other.gameObject);
         }
