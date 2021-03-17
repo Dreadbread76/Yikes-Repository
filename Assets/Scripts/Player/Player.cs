@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         #region Measure Distance
         distanceText.text = distance.ToString(); //Display distance travelled
         distance = (int)-transform.position.x;
-        if (distance%1000 == 1)
+        if (distance > 1 && distance%1000 == 1)
         {
             StartCoroutine(JumpScare(testImage, 0.5f));
         }
